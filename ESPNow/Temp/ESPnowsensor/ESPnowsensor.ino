@@ -12,13 +12,14 @@
 #include <esp_now.h>
 #include <esp_wifi.h>
 #include <WiFi.h>
+#include "secrets.h"
 
 // Set your Board ID (ESP32 Sender #1 = BOARD_ID 1, ESP32 Sender #2 = BOARD_ID 2, etc)
 #define BOARD_ID 1
 
 
 //MAC Address of the receiver 
-uint8_t broadcastAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+uint8_t broadcastAddress[] = {0xA4, 0xCF, 0x12, 0x96, 0x91, 0xB0}; //A4:CF:12:96:91:B0
 
 //Structure example to send data
 //Must match the receiver structure
@@ -38,7 +39,7 @@ const long interval = 10000;        // Interval at which to publish sensor readi
 unsigned int readingId = 0;
 
 // Insert your SSID
-constexpr char WIFI_SSID[] = "REPLACE_WITH_YOUR_SSID";
+constexpr char WIFI_SSID[] = primary_ssid;
 
 int32_t getWiFiChannel(const char *ssid) {
   if (int32_t n = WiFi.scanNetworks()) {
